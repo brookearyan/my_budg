@@ -1,0 +1,7 @@
+<!--delete expense button-->
+<h1>my expenses</h1>
+  <% @expenses.current_user.each do |b| %>
+  <p><%= b.name %></p>
+  <p><%= b.cost %></p>
+  <% end %>
+</div>

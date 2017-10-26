@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>my bills</title>
+  </head>
+  <body>
+    <div class="bills">
+
+    <h1>my bills</h1>
+      <% @bills.current_user.each do |b| %>
+      <p><%= b.company %></p>
+      <p><%= b.type %></p>
+      <p><%= b.cost %></p>
+      <% end %>
+    </div>
+
+  </body>
+</html>

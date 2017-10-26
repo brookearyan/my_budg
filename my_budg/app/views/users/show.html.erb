@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <style media="screen">
+      body {
+        background-color: #FAFBFC;
+      }
+      h1, h2, h3, h4, h5 {
+        font-family: 'Lora', serif;
+        color: #808080;
+      }
+
+      h1 {
+        margin-top: 20px;
+
+      }
+      p {
+      font-family: 'Open Sans', sans-serif;
+      color: #808080;
+      margin-left: 20px;
+      margin-right: 20px;
+      }
+    </style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <% provide(:title, @user.name) %>
+    <div class="profile">
+      <aside class="col-md-4">
+        <section class="user_info">
+          <h1>mybudg profile</h1><br>
+          <div class="user">
+            <strong><h4><%= @user.name %></h4></strong>
+            <p>email: <%= @user.email %></p>
+            <!---link to updateedit -->
+          </div>
+        </section>
+      </aside>
+    </div>
+  </body>
+</html>

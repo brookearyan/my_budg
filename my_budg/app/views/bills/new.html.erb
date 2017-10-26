@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>add new bill</title>
+  </head>
+  <body>
+    <h1>add new bill</h1>
+    <% form_for(@bill) %>
+    <%= f.label :company, "company" %>
+    <%= f.field :company %>
+    <%= f.collecton :type, "type" %>
+    <%= f.field :type %>
+    <%= f.label :cost, "cost" %>
+    <%= f.field :cost %>
+    <%= f.submit, "add bill" %>
+    </form>
+  </body>
+</html>
