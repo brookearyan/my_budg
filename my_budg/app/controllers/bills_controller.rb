@@ -1,13 +1,13 @@
 class BillsController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
-  
+  # before_action :logged_in_user, only: [:index, :edit, :update]
+  # before_action :correct_user,   only: [:edit, :update]
+
   def new
     @bill = Bill.new
   end
 
   def index
-    @bills = Bill.all
+    @bills = Bill.all.select(user_id: (current_user.id))
   end
 
   def show
@@ -16,7 +16,7 @@ class BillsController < ApplicationController
 
   def create
     @bill = Bill.create(bill_params)
-    redirect_to bill_path
+    redirect_to current_user
   end
 
   def edit
@@ -27,7 +27,7 @@ class BillsController < ApplicationController
     @bill = Bill.find(params[:id])
     if @bill.update_attributes(bill_params)
       flash[:success] = "bills updated"
-      redirect_to @bill
+      redirect_to current_user
     else
       render 'edit'
     end
@@ -36,6 +36,6 @@ class BillsController < ApplicationController
   private
 
   def bill_params
-    params.require(:bill).permit(:company, :type, :cost, :due_date, :user_id)
+    params.require(:bill).permit(:company, :bill_type, :cost, :start_time, :user_id)
   end
 end

@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  # before_action :logged_in_user, only: [:index, :edit, :update]
+  # before_action :correct_user,   only: [:edit, :update]
 
   def new
     @expense = Expense.new
@@ -11,12 +11,11 @@ class ExpensesController < ApplicationController
   end
 
   def show
-    @expense = Expense.find(params[:id])
   end
 
   def create
     @expense = Expense.create(expense_params)
-    redirect_to expense_path
+    redirect_to current_user
   end
 
   def edit
@@ -27,7 +26,7 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
     if @expense.update_attributes(expense_params)
       flash[:success] = "expenses updated"
-      redirect_to @expense
+      redirect_to current_user
     else
       render 'edit'
     end
@@ -36,6 +35,6 @@ class ExpensesController < ApplicationController
   private
 
   def expense_params
-    params.require(:expense).permit(:name, :type, :cost, :month_id)
+    params.require(:expense).permit(:name, :expense_type, :cost, :start_time, :user_id)
   end
 end

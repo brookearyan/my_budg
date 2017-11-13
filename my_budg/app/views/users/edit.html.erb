@@ -1,5 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <style media="screen">
+    body {
+      background-color: #FAFBFC;
+    }
+
+    .row {
+      font-family: 'Open Sans', sans-serif;
+      color: #263675;
+      font-size: 16px;
+    }
+
+    .btn {
+      font-family: 'Lora', serif;
+      background-color: #808080;
+      text-align: center;
+      font-size: 16px;
+    }
+    h1, h2, h4, h5 {
+      font-family: 'Lora', serif;
+      color: #808080;
+    }
+
+    a:hover {
+      text-decoration: none;
+      background-color: #808080;
+      color: black;
+    }
+
+    h1 {
+      margin-top: 35px;
+      font-size: 30px;
+      text-align: center;
+      color: #C0C0C0;
+    }
+
+    p {
+    font-family: 'Lora', serif;
+    color: #808080;
+    margin-left: 8px;
+    margin-right: 10px;
+    font-size: 18px;
+    }
+
+    p a {
+      color: #263675;
+    }
+  </style>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+
 <% provide(:title, "edit user") %>
-<h1>update your profile</h1>
+<br><h1>update your profile</h1><br>
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
@@ -18,8 +73,17 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, class: 'form-control' %><br>
 
+      <%= f.label :income, "annual income" %>
+      <%= f.text_field :income, class: 'form-control' %><br>
+
+      <%= f.label :zipcode, "zip code" %>
+      <%= f.text_field :zipcode, class: 'form-control' %><br>
+
       <%= f.submit "save changes", class: "btn btn-primary" %>
     <% end %>
     </div>
   </div>
 </div>
+
+</body>
+</html>

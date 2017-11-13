@@ -2,42 +2,83 @@
 <!DOCTYPE html>
 <html>
   <head>
+
     <style media="screen">
       body {
         background-color: #FAFBFC;
       }
-      h1, h2, h3, h4, h5 {
+      .footer{
+        font-family: 'Open Sans', sans-serif;
+        text-align: right;
+
+      }
+      .totals {
+        font-family: 'Open Sans', sans-serif;
+        color: #263675;
+        font-size: 16px;
+      }
+
+      h1, h2, h4, h5 {
         font-family: 'Lora', serif;
         color: #808080;
       }
+      h3 a {
+        font-family: 'Open Sans', sans-serif;
+        color: #263675;
+        font-size: 16px;
+        margin-left: 10px;
+      }
+      a:hover {
+        text-decoration: none;
+        color: black;
+
+      }
+
+      h4 {
+        font-size: 24px;
+      }
 
       h1 {
-        margin-top: 20px;
+        margin-top: 35px;
+        font-size: 20px;
+        text-align: center;
+        color: #C0C0C0;
 
       }
       p {
       font-family: 'Open Sans', sans-serif;
       color: #808080;
-      margin-left: 20px;
-      margin-right: 20px;
+      margin-left: 8px;
+      margin-right: 10px;
+      font-size: 16px;
       }
+
     </style>
-    <meta charset="utf-8">
+    <meta charset="utf-6">
     <title></title>
   </head>
   <body>
     <% provide(:title, @user.name) %>
     <div class="profile">
-      <aside class="col-md-4">
+      <aside class="col-md-6">
         <section class="user_info">
           <h1>mybudg profile</h1><br>
           <div class="user">
             <strong><h4><%= @user.name %></h4></strong>
-            <p>email: <%= @user.email %></p>
-            <!---link to updateedit -->
-          </div>
-        </section>
-      </aside>
-    </div>
+            <br><p>email: <%= @user.email %></p><br>
+            <p>password: **********</p><br>
+            <p>annual income: <%= @user.income %></p><br>
+            <p>zipcode: <%= @user.zipcode %></p><br>
+            <% @income = @user.income.to_f %>
+            <% @after_taxes = @income*= 0.65 %>
+            <p>after taxes: $<%= @after_taxes.to_i %></p><br>
+            <p>income per month: $<%= @after_taxes.to_i/12 %></p><br>
+          </section>
+        </aside>
+      </div>
+            <div class="footer">
+            <h3><%= link_to "add expenses", new_expense_path(current_user) %> |
+            <%= link_to "add bills", new_bill_path(current_user) %></h3>
+      </div>
   </body>
 </html>

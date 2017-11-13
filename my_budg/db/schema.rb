@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171024143649) do
+ActiveRecord::Schema.define(version: 20171027131334) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bills", force: :cascade do |t|
     t.string "company"
-    t.string "type"
+    t.string "bill_type"
     t.integer "cost"
     t.datetime "start_time"
     t.integer "user_id"
@@ -27,26 +27,17 @@ ActiveRecord::Schema.define(version: 20171024143649) do
 
   create_table "expenses", force: :cascade do |t|
     t.string "name"
-    t.string "type"
+    t.string "expense_type"
     t.integer "cost"
-    t.integer "start_time"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "incomes", force: :cascade do |t|
+    t.datetime "start_time"
     t.integer "user_id"
-    t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "months", force: :cascade do |t|
     t.string "name"
-    t.integer "date"
     t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -55,6 +46,8 @@ ActiveRecord::Schema.define(version: 20171024143649) do
     t.string "password"
     t.string "password_confirmation"
     t.string "password_digest"
+    t.integer "income"
+    t.integer "zipcode"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -1,8 +1,10 @@
-<!--delete bills button-->
 <h1>my bills</h1>
-  <% @bills.current_user.each do |b| %>
-  <p><%= b.company %></p>
-  <p><%= b.type %></p>
-  <p><%= b.cost %></p>
-  <% end %>
+  <form class="bills" action="/bills" method="delete">
+    <% @bills.current_user.each do |b| %>
+    <p><%= b.company %></p>
+    <p><%= b.type %></p>
+    <p><%= b.cost %></p>
+    <%= input type="submit", "delete bill" %>
+    <% end %>
+  </form>
 </div>

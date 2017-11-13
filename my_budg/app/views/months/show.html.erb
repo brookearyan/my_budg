@@ -4,7 +4,6 @@
   <head>
     <style>
       body {
-        font-family: didot;
       }
 
       table {
@@ -16,6 +15,8 @@
         box-sizing: border-box;
         max-width: 100%;
         width: 100%;
+        font-family: 'Open Sans', sans-serif;
+
 
       }
 
@@ -31,7 +32,11 @@
         border-right: 1px solid rgb(221, 221, 221);
         border-top: 0px none rgb(51, 51, 51);
         box-sizing: border-box;
-        text-align: left;
+        text-align: center;
+        color: #808080;
+
+
+
       }
 
       td {
@@ -57,12 +62,13 @@
 
       .calendar-title {
         font-size: 30px;
+        color: #808080;
+
       }
 
       .calendar-heading {
         text-align: center;
-        height: 60px;
-        vertical-align: bottom;
+        font-family: 'Lora', serif;
       }
 
       .day {
@@ -74,7 +80,7 @@
     <title></title>
   </head>
   <body>
-    <div class="month">
+    <div>
       <%= month_calendar do |date| %>
         <%= date %>
       <% end %>

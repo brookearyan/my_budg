@@ -1,19 +1,82 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <head>
+    <style media="screen">
+      body {
+        background-color: #FAFBFC;
+      }
+
+      .row {
+        font-family: 'Open Sans', sans-serif;
+        color: #263675;
+        font-size: 16px;
+      }
+
+      .btn {
+        font-family: 'Lora', serif;
+        background-color: #808080;
+        text-align: center;
+        font-size: 16px;
+      }
+
+      .dropdown {
+        font-family: 'Open Sans', sans-serif;
+        color: #263675;
+        border-color: #263675;
+
+      }
+
+      h1, h2, h4, h5 {
+        font-family: 'Lora', serif;
+        color: #808080;
+      }
+
+      a:hover {
+        text-decoration: none;
+        background-color: #808080;
+        color: black;
+      }
+
+      h1 {
+        margin-top: 35px;
+        font-size: 24px;
+        text-align: center;
+        color: #C0C0C0;
+      }
+
+      p {
+      font-family: 'Lora', serif;
+      color: #808080;
+      margin-left: 8px;
+      margin-right: 10px;
+      font-size: 18px;
+      }
+
+      p a {
+        color: #263675;
+      }
+    </style>
     <meta charset="utf-8">
     <title>add new bill</title>
   </head>
   <body>
-    <h1>add new bill</h1>
-    <% form_for(@bill) %>
-    <%= f.label :company, "company" %>
-    <%= f.field :company %>
-    <%= f.collecton :type, "type" %>
-    <%= f.field :type %>
-    <%= f.label :cost, "cost" %>
-    <%= f.field :cost %>
-    <%= f.submit, "add bill" %>
-    </form>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-3">
+        <br><h1>add new bill</h1><br>
+        <%= form_for(@bill) do |f| %>
+        <%= f.label :company, "company" %>
+        <%= f.text_field :company, class: 'form-control'  %><br>
+        <%= f.label :cost, "cost" %>
+        <%= f.text_field :cost , class: 'form-control' %><br>
+        <%= f.label :type, "type" %><br>
+        <%= f.select :bill_type, [ 'utilities','rent/mortage','loans', 'credit cards' ] %><br><br>
+        <%= f.label :start_time, "payment due" %>
+        <%= f.text_field :start_time, class: 'form-control'  %><br>
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        <%= f.submit "add bill", class: 'btn btn-primary'  %><br>
+        <% end %>
+      </div>
+    </div>
   </body>
 </html>

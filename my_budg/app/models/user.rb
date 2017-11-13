@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   has_many :bills
+  has_many :expenses
   has_many :months
-  has_many :expenses, through: :months
 
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
@@ -18,4 +18,13 @@ class User < ApplicationRecord
                                                   BCrypt::Engine.cost
     BCrypt::Password.create(string, cost: cost)
   end
+
+  def self.bills
+    @bills = Bill.all.select { |b| b.user_id == self.id }
+  end
+
+  def self.expenses
+    @expenses = Expense.all.select { |b| b.user_id == self.id }
+  end
+
 end
