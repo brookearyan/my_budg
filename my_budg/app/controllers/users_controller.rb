@@ -19,9 +19,10 @@ class UsersController < ApplicationController
     if @user.save
       log_in @user
       flash[:success] = "welcome!"
-      redirect_to @user
-    else
-      render 'new'
+      render json: @user, status: 201
+    #   redirect_to @user
+    # else
+    #   render 'new'
     end
   end
 
