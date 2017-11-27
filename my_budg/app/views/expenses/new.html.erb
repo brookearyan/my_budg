@@ -67,6 +67,21 @@
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.submit "add expense" , class: 'btn btn-primary' %><br>
             <% end %>
+            <script type="text/javascript" charset="utf-8">
+              $(function () {
+                $('form').submit(function(event) {
+
+                  event.preventDefault();
+
+                  var values = $(this).serialize();
+
+                  var posting = $.post('/expenses', values);
+
+                  posting.done(function(data) {
+                  });
+                });
+              });
+            </script>
           </div>
         </div>
       </form>
