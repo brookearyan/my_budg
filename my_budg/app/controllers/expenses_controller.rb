@@ -1,8 +1,5 @@
 class ExpensesController < ApplicationController
 
-  def new
-    @expense = Expense.new
-  end
 
   def index
     @expenses = Expense.all
@@ -16,10 +13,14 @@ class ExpensesController < ApplicationController
      end
    end
 
-  def create
-    @expense = Expense.create(expense_params)
-    redirect_to current_user
-  end
+   def new
+     @expense = Expense.new
+   end
+
+   def create
+     @expense = Expense.create(expense_params)
+     render json: @expense, status: 201
+   end
 
   def edit
     @expense = Expense.find(params[:id])

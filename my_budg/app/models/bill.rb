@@ -6,5 +6,6 @@ class Bill < ApplicationRecord
     costs = @bills.map { |b| b.cost }
     costs.reduce(:+)
   end
+# send logic to JS file
 
 end
