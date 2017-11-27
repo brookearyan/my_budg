@@ -1,7 +1,10 @@
 class User < ApplicationRecord
+  attr_accessor :remember_token
+
   has_many :bills
   has_many :expenses
   has_many :months
+
 
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { maximum: 50 }
@@ -25,6 +28,16 @@ class User < ApplicationRecord
 
   def self.expenses
     @expenses = Expense.all.select { |b| b.user_id == self.id }
+  end
+
+  def User.new_token
+    SecureRandom.urlsafe_base64
+  end
+
+  # Remembers a user in the database for use in persistent sessions.
+  def remember
+    self.remember_token = User.new_token
+    update_attribute(:remember_digest, User.digest(remember_token))
   end
 
 end

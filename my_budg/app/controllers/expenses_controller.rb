@@ -1,6 +1,4 @@
 class ExpensesController < ApplicationController
-  # before_action :logged_in_user, only: [:index, :edit, :update]
-  # before_action :correct_user,   only: [:edit, :update]
 
   def new
     @expense = Expense.new
@@ -11,7 +9,12 @@ class ExpensesController < ApplicationController
   end
 
   def show
-  end
+     @expense = Expense.find(params[:id])
+     respond_to do |format|
+       format.html { render :show }
+       format.json { render json: @expense}
+     end
+   end
 
   def create
     @expense = Expense.create(expense_params)

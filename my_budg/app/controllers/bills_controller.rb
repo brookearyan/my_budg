@@ -1,6 +1,4 @@
 class BillsController < ApplicationController
-  # before_action :logged_in_user, only: [:index, :edit, :update]
-  # before_action :correct_user,   only: [:edit, :update]
 
   def new
     @bill = Bill.new
@@ -11,8 +9,12 @@ class BillsController < ApplicationController
   end
 
   def show
-    @bill = Bill.find(params[:id])
-  end
+     @bill = Bill.find(params[:id])
+     respond_to do |format|
+       format.html { render :show }
+       format.json { render json: @bill}
+     end
+   end
 
   def create
     @bill = Bill.create(bill_params)

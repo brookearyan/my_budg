@@ -1,6 +1,4 @@
 class MonthsController < ApplicationController
-  # before_action :logged_in_user, only: [:index, :edit, :update]
-  # before_action :correct_user,   only: [:edit, :update]
 
   def new
     @month = Month.new
@@ -11,8 +9,12 @@ class MonthsController < ApplicationController
   end
 
   def show
-    @month = Month.find(params[:id])
-  end
+     @user = User.find(params[:id])
+     respond_to do |format|
+       format.html { render :show }
+       format.json { render json: @user}
+     end
+   end
 
   def create
     @month = Month.create(month_params)
