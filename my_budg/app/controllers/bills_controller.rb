@@ -1,13 +1,5 @@
 class BillsController < ApplicationController
 
-  def new
-    @bill = Bill.new
-  end
-
-  def index
-    @bills = Bill.all.select(user_id: (current_user.id))
-  end
-
   def show
      @bill = Bill.find(params[:id])
      respond_to do |format|
@@ -16,9 +8,17 @@ class BillsController < ApplicationController
      end
    end
 
+   def index
+     @bills = Bill.all.select(user_id: (current_user.id))
+   end
+
+   def new
+     @bill = Bill.new
+   end
+
   def create
     @bill = Bill.create(bill_params)
-    redirect_to current_user
+    render json: @bill, status: 201
   end
 
   def edit

@@ -49,7 +49,9 @@
         color: #263675;
       }
     </style>
-    <meta charset="utf-8">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="index.scss">
+      <meta charset="utf-8">
     <title>add new expense</title>
   </head>
       <body>
@@ -67,23 +69,35 @@
             <%= f.hidden_field :user_id, :value => current_user.id %>
             <%= f.submit "add expense" , class: 'btn btn-primary' %><br>
             <% end %>
-            <script type="text/javascript" charset="utf-8">
-              $(function () {
-                $('form').submit(function(event) {
-
-                  event.preventDefault();
-
-                  var values = $(this).serialize();
-
-                  var posting = $.post('/expenses', values);
-
-                  posting.done(function(data) {
-                  });
-                });
-              });
-            </script>
           </div>
         </div>
-      </form>
+        <div class="row">
+          <div class="col-md-6 col-md-offset-3">
+            <div id="expense-result">
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" charset="utf-8">
+          $(function () {
+            $('form').submit(function(event) {
+
+              event.preventDefault();
+
+              var values = $(this).serialize();
+
+              var posting = $.post('/expenses', values);
+
+              posting.done(posting => {
+                let markup =
+                `<li>
+                  <h2> ${posting.name} </h2>
+                  <p> cost: ${posting.cost} </p>
+                  <p> type: ${posting.expense_type} </p>
+                  <p> payment date: ${posting.start_time} </p>
+                </li>`;
+                $('#expense-result').append(markup);              });
+            });
+          });
+        </script>
     </body>
 </html>
